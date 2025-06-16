@@ -1,58 +1,64 @@
 ---
-import clsx from "clsx";
+import clsx from 'clsx';
 
-import Layout from "../layouts/Layout.astro";
+import Layout from '../layouts/Layout.astro';
 
-import HomeSection from "../components/sections/HomeSection.astro";
-import AboutSection from "../components/sections/AboutSection.astro";
-import SkillSection from "../components/sections/SkillSection.astro";
-import WorkSection from "../components/sections/WorkSection.astro";
-import ContactSection from "../components/sections/ContactSection.astro";
+import HomeSection from '../components/sections/HomeSection.astro';
+import AboutSection from '../components/sections/AboutSection.astro';
+import SkillSection from '../components/sections/SkillSection.astro';
+import WorkSection from '../components/sections/WorkSection.astro';
+import ContactSection from '../components/sections/ContactSection.astro';
+import FooterSection from '../components/sections/FooterSection.astro';
 
 const sections = [
-  {
-    Component: HomeSection,
-    key: "home",
-    greenBackdrop: false,
-  },
-  {
-    Component: AboutSection,
-    key: "about",
-    greenBackdrop: true,
-  },
-  {
-    Component: SkillSection,
-    key: "skill",
-    greenBackdrop: false,
-  },
-  {
-    Component: WorkSection,
-    key: "work",
-    greenBackdrop: false,
-  },
-  {
-    Component: ContactSection,
-    key: "contact",
-    greenBackdrop: false,
-  },
+	{
+		Component: HomeSection,
+		key: 'home',
+		greenBackdrop: false,
+	},
+	{
+		Component: AboutSection,
+		key: 'about',
+		greenBackdrop: true,
+	},
+	{
+		Component: SkillSection,
+		key: 'skill',
+		greenBackdrop: false,
+	},
+	// {
+	//   Component: WorkSection,
+	//   key: "work",
+	//   greenBackdrop: false,
+	// },
+	// {
+	//   Component: ContactSection,
+	//   key: "contact",
+	//   greenBackdrop: false,
+	// },
+	{
+		Component: FooterSection,
+		key: 'footer',
+		greenBackdrop: false,
+	},
 ];
 ---
 
 <Layout>
-  {
-    sections.map(({ Component, key, greenBackdrop }) => (
-      <section
-        id={key}
-        x-intersect={`activeTab = '${key}'`}
-        class={clsx(
-          "relative mb-16 flex h-dvh w-full shrink-0 snap-start flex-col items-center justify-center overflow-hidden last:mb-0",
-          greenBackdrop
-            ? "bg-ghall-green text-white"
-            : "bg-background text-foreground",
-        )}
-      >
-        <Component />
-      </section>
-    ))
-  }
+	{
+		sections.map(({ Component, key, greenBackdrop }) => (
+			<section
+				id={key}
+				x-intersect={`activeTab = '${key}'`}
+				class={clsx(
+					'relative mb-16 flex h-dvh w-full shrink-0 snap-start flex-col items-center justify-center overflow-hidden last:mb-0',
+					greenBackdrop
+						? 'bg-ghall-green text-white'
+						: 'bg-background text-foreground'
+				)}
+			>
+				<Component />
+			</section>
+		))
+	}
 </Layout>

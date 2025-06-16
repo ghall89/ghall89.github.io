@@ -1,31 +1,31 @@
 ---
-import "../styles/global.css";
+import '../styles/global.css';
 
-import NavBar from "../components/NavBar.astro";
+import NavBar from '../components/NavBar.astro';
 ---
 
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Graham Hall - Web & Software Developer</title>
-  </head>
-  <body>
-    <main
-      class="h-dvh snap-y snap-mandatory overflow-y-scroll scroll-smooth"
-      x-data="{ activeTab: 'home' }"
-    >
-      <NavBar />
-      <slot />
-    </main>
-  </body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Graham Hall - Web & Software Developer</title>
+	</head>
+	<body>
+		<main
+			class="h-dvh snap-y snap-mandatory overflow-y-scroll scroll-smooth text-slate-600"
+			x-data="{ activeTab: 'home', mobileNavOpen: false  }"
+		>
+			<NavBar />
+			<slot />
+		</main>
+	</body>
 </html>
 
 <script>
-  import { Observer } from "tailwindcss-intersect";
+	import { Observer } from 'tailwindcss-intersect';
 
-  Observer.start();
+	Observer.start();
 </script>
