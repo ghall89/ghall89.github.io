@@ -1,42 +1,42 @@
 ---
-import clsx from "clsx";
+import clsx from 'clsx';
 const skills = {
-  Languages: ["JavaScript", "TypeScript", "Swift"],
-  "Front-End": ["NextJS", "Astro", "Tailwind", "SwiftUI"],
-  "Back-End": ["PostgreSQL", "SQLite", "Prisma", "Drizzle", "Express"],
+	Languages: ['JavaScript', 'TypeScript', 'Swift'],
+	'Front-End': ['NextJS', 'Astro', 'Tailwind', 'SwiftUI'],
+	'Back-End': ['PostgreSQL', 'SQLite', 'Prisma', 'Drizzle', 'Express'],
 };
 
 const delay = [
-  "motion-delay-200",
-  "motion-delay-300",
-  "motion-delay-[400ms]",
-  "motion-delay-[500ms]",
-  "motion-delay-[600ms]",
+	'motion-delay-200',
+	'motion-delay-300',
+	'motion-delay-[400ms]',
+	'motion-delay-[500ms]',
+	'motion-delay-[600ms]',
 ];
 ---
 
 <div>
-  <div class="grid grid-cols-1 justify-items-center lg:grid-cols-2">
-    {
-      Object.keys(skills).map((key) => (
-        <div class="col-span-1 m-5 intersect:motion-preset-fade intersect:motion-scale-in-50 last:odd:md:col-span-2">
-          <div class="mx-auto max-w-[300px] p-3">
-            <h2 class="mb-4 text-center text-xl font-light">{key}</h2>
-            <ul class="flex flex-wrap justify-center">
-              {skills[key].map((skill: string, i: number) => (
-                <li
-                  class={clsx(
-                    "m-2 w-fit rounded-full bg-white/90 px-4 py-1 text-slate-700 shadow intersect:motion-preset-fade intersect:motion-scale-in-50 last:odd:md:col-span-2",
-                    delay[i],
-                  )}
-                >
-                  {skill}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      ))
-    }
-  </div>
+	<div class="grid grid-cols-1 justify-items-center lg:grid-cols-2">
+		{
+			Object.keys(skills).map((key) => (
+				<div class="col-span-1 m-5 intersect:motion-preset-fade intersect:motion-scale-in-50 last:odd:md:col-span-2">
+					<div class="mx-auto max-w-[300px] p-3">
+						<h2 class="mb-4 text-center text-xl font-light">{key}</h2>
+						<ul class="flex flex-wrap justify-center">
+							{skills[key].map((skill: string, i: number) => (
+								<li
+									class={clsx(
+										'm-2 w-fit rounded-full border border-gray-200 bg-white/90 px-4 py-1 text-slate-700 intersect:motion-preset-fade intersect:motion-scale-in-50 last:odd:md:col-span-2',
+										delay[i]
+									)}
+								>
+									{skill}
+								</li>
+							))}
+						</ul>
+					</div>
+				</div>
+			))
+		}
+	</div>
 </div>
