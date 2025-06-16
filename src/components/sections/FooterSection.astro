@@ -2,19 +2,18 @@
 import { Icon } from 'astro-icon/components';
 ---
 
-<div class="text-center">
-	<p class="text-xl intersect:motion-preset-fade intersect:motion-scale-in-50">
+<div
+	class="text-center [&>p]:intersect:motion-preset-fade [&>p]:text-xl [&>p]:intersect:motion-scale-in-50"
+>
+	<p class="motion-delay-50 font-medium">
 		Made with <span>
 			<Icon
 				name="heart-solid"
-				class="inline text-red-500 intersect:motion-preset-pulse intersect:motion-loop-twice"
+				class="inline text-red-500 motion-delay-100 intersect:motion-preset-pulse intersect:motion-loop-twice"
 			/></span
 		> in Rhode Island.
 	</p>
-
-	<p
-		class="text-xl delay-500 intersect:motion-preset-fade intersect:motion-scale-in-50"
-	>
+	<p class="motion-delay-300">
 		Built with <a class="underline" href="https://astro.build/" target="_blank"
 			>Astro</a
 		>.
