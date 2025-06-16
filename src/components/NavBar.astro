@@ -1,0 +1,50 @@
+---
+import clsx from "clsx";
+
+const navLinks: { label: string; key: string }[] = [
+  {
+    label: "About Me",
+    key: "about",
+  },
+  {
+    label: "My Work",
+    key: "work",
+  },
+  {
+    label: "Contact Me",
+    key: "contact",
+  },
+];
+---
+
+<nav class="absolute bottom-0 z-50 h-fit w-screen md:top-0">
+  <div
+    class="z-100 m-3 flex items-center justify-center gap-8 rounded-full border border-gray-200 bg-white/90 p-3 backdrop-blur-lg md:justify-between"
+  >
+    <a
+      class="flex items-center gap-4 text-lg font-bold transition-opacity hover:opacity-75"
+      href="#intro"
+    >
+      <img
+        class="border-ghall-green/60 rounded-full border w-8"
+        src="/assets/avatar.jpeg"
+        alt=""
+      />
+      <span class="hidden md:block">Graham Hall</span>
+    </a>
+    <ul class="mr-6 flex items-center gap-8 md:gap-4">
+      {
+        navLinks.map(({ label, key }) => (
+          <li>
+            <a
+              href={`#${key}`}
+              class={clsx("flex items-center gap-1 max-md:text-2xl")}
+            >
+              <span class="hidden font-semibold md:block">{label}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</nav>

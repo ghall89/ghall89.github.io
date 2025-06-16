@@ -1,0 +1,30 @@
+---
+import "../styles/global.css";
+
+import NavBar from "../components/NavBar.astro";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Astro Basics</title>
+  </head>
+  <body>
+    <main
+      class="h-screen snap-y snap-mandatory overflow-y-scroll scroll-smooth"
+    >
+      <NavBar />
+      <slot />
+    </main>
+  </body>
+</html>
+
+<script>
+  import { Observer } from "tailwindcss-intersect";
+
+  Observer.start();
+</script>

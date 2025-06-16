@@ -1,0 +1,38 @@
+---
+import clsx from "clsx";
+
+import Layout from "../layouts/Layout.astro";
+import Section1 from "../components/sections/Section1.astro";
+import Section2 from "../components/sections/Section2.astro";
+
+const sections = [
+  {
+    Component: Section1,
+    key: "intro",
+    greenBackdrop: false,
+  },
+  {
+    Component: Section2,
+    key: "about",
+    greenBackdrop: true,
+  },
+];
+---
+
+<Layout>
+  {
+    sections.map(({ Component, key, greenBackdrop }) => (
+      <section
+        id={key}
+        class={clsx(
+          "relative mb-16 flex h-screen w-full shrink-0 snap-start flex-col items-center justify-center overflow-hidden last:mb-0",
+          greenBackdrop
+            ? "bg-ghall-green text-white"
+            : "bg-background text-foreground"
+        )}
+      >
+        <Component />
+      </section>
+    ))
+  }
+</Layout>
