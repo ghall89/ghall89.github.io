@@ -2,19 +2,38 @@
 import clsx from "clsx";
 
 import Layout from "../layouts/Layout.astro";
-import Section1 from "../components/sections/Section1.astro";
-import Section2 from "../components/sections/Section2.astro";
+
+import HomeSection from "../components/sections/HomeSection.astro";
+import AboutSection from "../components/sections/AboutSection.astro";
+import SkillSection from "../components/sections/SkillSection.astro";
+import WorkSection from "../components/sections/WorkSection.astro";
+import ContactSection from "../components/sections/ContactSection.astro";
 
 const sections = [
   {
-    Component: Section1,
+    Component: HomeSection,
     key: "home",
     greenBackdrop: false,
   },
   {
-    Component: Section2,
+    Component: AboutSection,
     key: "about",
     greenBackdrop: true,
+  },
+  {
+    Component: SkillSection,
+    key: "skill",
+    greenBackdrop: false,
+  },
+  {
+    Component: WorkSection,
+    key: "work",
+    greenBackdrop: false,
+  },
+  {
+    Component: ContactSection,
+    key: "contact",
+    greenBackdrop: false,
   },
 ];
 ---
