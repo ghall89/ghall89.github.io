@@ -1,47 +1,49 @@
 ---
-import clsx from "clsx";
+import { Icon } from "astro-icon/components";
 
-const navLinks: { label: string; key: string }[] = [
+const navLinks: { label: string; key: string; icon: string }[] = [
+  {
+    label: "Home",
+    key: "home",
+    icon: "nav/house-solid",
+  },
   {
     label: "About Me",
     key: "about",
+    icon: "nav/circle-info-solid",
   },
   {
     label: "My Work",
     key: "work",
+    icon: "nav/briefcase-solid",
   },
   {
     label: "Contact Me",
     key: "contact",
+    icon: "nav/envelope-solid",
   },
 ];
 ---
 
 <nav class="absolute bottom-0 z-50 h-fit w-screen md:top-0">
   <div
-    class="z-100 m-3 flex items-center justify-center gap-8 rounded-full border border-gray-200 bg-white/90 p-3 backdrop-blur-lg md:justify-between"
+    class="z-100 m-3 flex items-center justify-center gap-8 rounded-full border border-gray-200 bg-white/90 p-3 backdrop-blur-lg w-fit mx-auto"
   >
-    <a
-      class="flex items-center gap-4 text-lg font-bold transition-opacity hover:opacity-75"
-      href="#intro"
+    <ul
+      class="mx-6 flex items-center gap-8 md:gap-4"
     >
-      <img
-        class="border-ghall-green/60 rounded-full border w-8"
-        src="/assets/avatar.jpeg"
-        alt=""
-      />
-      <span class="hidden md:block">Graham Hall</span>
-    </a>
-    <ul class="mr-6 flex items-center gap-8 md:gap-4">
       {
-        navLinks.map(({ label, key }) => (
+        navLinks.map(({ label, key, icon }) => (
           <li>
-            <a
-              href={`#${key}`}
-              class={clsx("flex items-center gap-1 max-md:text-2xl")}
+            <button
+              id={`${key}-nav-item`}
+              x-on:click={`window.location.hash = '#${key}'`}
+              class="flex items-center gap-1 max-md:text-2xl hover:opacity-65 transition-colors"
+              :class={`activeTab === '${key}' && 'text-ghall-green'`}
             >
+              <Icon name={icon} />
               <span class="hidden font-semibold md:block">{label}</span>
-            </a>
+            </button>
           </li>
         ))
       }

@@ -9,13 +9,14 @@ import NavBar from "../components/NavBar.astro";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="generator" content={Astro.generator} />
-    <title>Astro Basics</title>
+    <title>Graham Hall - Web & Software Developer</title>
   </head>
   <body>
     <main
       class="h-screen snap-y snap-mandatory overflow-y-scroll scroll-smooth"
+      x-data="{ activeTab: 'home' }"
     >
       <NavBar />
       <slot />
