@@ -1,52 +1,58 @@
 ---
-import clsx from "clsx";
-import type { SocialButtonProps } from "../../types";
-import SocialButton from "../SocialButton.astro";
+import clsx from 'clsx';
+import { Image } from 'astro:assets';
+
+import type { SocialButtonProps } from '../../types';
+import SocialButton from '../SocialButton.astro';
+import avatarImg from '../../assets/avatar.jpeg';
 
 const socials: SocialButtonProps[] = [
-  {
-    name: "GitHub",
-    icon: "social/github",
-    href: "https://github.com/ghall89",
-    delay: "motion-delay-500",
-  },
-  {
-    name: "LinkedIn",
-    icon: "social/linkedin",
-    href: "https://www.linkedin.com/in/ghalldev/",
-    delay: "motion-delay-700",
-  },
+	{
+		name: 'GitHub',
+		icon: 'social/github',
+		href: 'https://github.com/ghall89',
+		delay: 'motion-delay-500',
+	},
+	{
+		name: 'LinkedIn',
+		icon: 'social/linkedin',
+		href: 'https://www.linkedin.com/in/ghalldev/',
+		delay: 'motion-delay-700',
+	},
 ];
 ---
 
 <>
-  <div
-    class="w-48 overflow-hidden rounded-full bg-ghall-green intersect:motion-preset-fade intersect:motion-scale-in-50 md:w-80"
-  >
-    <div
-      class="motion-delay-100 intersect:motion-preset-fade intersect:motion-scale-in-75"
-    >
-      <img src="/assets/avatar.jpeg" alt="" />
-    </div>
-  </div>
-  <div
-    class="mt-4 text-center motion-delay-200 intersect:motion-preset-fade intersect:motion-scale-in-75"
-  >
-    <h1 class="text-4xl font-thin md:text-6xl">Graham Hall</h1>
-    <h2 class="text-xl font-semibold md:text-2xl">Web & Software Developer</h2>
-  </div>
-  <div class="mx-auto flex w-fit gap-4 p-7">
-    {
-      socials.map(({ name, icon, href, delay }) => (
-        <div
-          class={clsx(
-            "intersect:motion-preset-fade intersect:motion-scale-in-75",
-            delay,
-          )}
-        >
-          <SocialButton name={name} icon={icon} href={href} />
-        </div>
-      ))
-    }
-  </div>
+	<div
+		class="w-48 overflow-hidden rounded-full bg-ghall-green intersect:motion-preset-fade intersect:motion-scale-in-50 md:w-80"
+	>
+		<div
+			class="motion-delay-100 intersect:motion-preset-fade intersect:motion-scale-in-75"
+		>
+			<Image
+				src={avatarImg}
+				alt="A cartoon-style portrait of a man with brown hair, glasses, and a beard wearing a red and green plaid flannel shirt against an olive green background."
+			/>
+		</div>
+	</div>
+	<div
+		class="mt-4 text-center motion-delay-200 intersect:motion-preset-fade intersect:motion-scale-in-75"
+	>
+		<h1 class="text-4xl font-thin md:text-6xl">Graham Hall</h1>
+		<h2 class="text-xl font-semibold md:text-2xl">Web & Software Developer</h2>
+	</div>
+	<div class="mx-auto flex w-fit gap-4 p-7">
+		{
+			socials.map(({ name, icon, href, delay }) => (
+				<div
+					class={clsx(
+						'intersect:motion-preset-fade intersect:motion-scale-in-75',
+						delay
+					)}
+				>
+					<SocialButton name={name} icon={icon} href={href} />
+				</div>
+			))
+		}
+	</div>
 </>
