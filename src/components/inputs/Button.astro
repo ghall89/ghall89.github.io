@@ -11,7 +11,7 @@ const props = Astro.props;
 
 <button
 	class={clsx(
-		'rounded-md border bg-white p-1 transition-colors hover:bg-ghall-green hover:text-white',
+		'rounded-md border bg-white p-1 transition-colors hover:bg-ghall-green hover:text-white disabled:opacity-50',
 		props.class
 	)}
 	type={props.type}><slot /></button

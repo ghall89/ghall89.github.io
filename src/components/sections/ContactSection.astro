@@ -1,4 +1,6 @@
 ---
+import { Icon } from 'astro-icon/components';
+
 import TextField from '../inputs/TextField.astro';
 import TextArea from '../inputs/TextArea.astro';
 import Button from '../inputs/Button.astro';
@@ -27,7 +29,7 @@ import Button from '../inputs/Button.astro';
 	<div
 		id="contact-container"
 		class="flex min-h-full flex-col items-center justify-center"
-		x-data="{ success: false, error: false }"
+		x-data="{ success: false, error: false, loading: false }"
 	>
 		<div
 			x-show="success"
@@ -65,9 +67,17 @@ import Button from '../inputs/Button.astro';
 					name="message"
 					required
 				/>
-				<Button
-					class="motion-delay-500 intersect:motion-preset-fade intersect:motion-preset-slide-up"
-					type="submit">Send</Button
+				<button
+					class="rounded-md border bg-white p-1 transition-colors motion-delay-500 intersect:motion-preset-fade intersect:motion-preset-slide-up hover:bg-ghall-green hover:text-white disabled:bg-ghall-green disabled:text-white disabled:opacity-50"
+					type="submit"
+					x-bind:disabled="loading"
+				>
+					<Icon
+						name="spinner-solid"
+						class="motion-preset-spin mr-2 inline"
+						x-show="loading"
+					/>
+					<span x-text="!loading ? 'Send' : 'Sending...'"></span></button
 				>
 				<span
 					class="text-center font-medium text-red-500"
@@ -93,6 +103,7 @@ import Button from '../inputs/Button.astro';
 		const alpineData = Alpine.$data(containerEl) as {
 			success: boolean;
 			error: boolean;
+			loading: boolean;
 		};
 		console.log(alpineData);
 		const formData = new FormData(formEl);
@@ -106,21 +117,30 @@ import Button from '../inputs/Button.astro';
 			body = { ...body, [name]: value };
 		}
 
-		const response = await fetch(url, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify(body),
-		});
+		alpineData.loading = true;
+		alpineData.error = false;
 
-		console.log(response);
+		try {
+			const response = await fetch(url, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(body),
+			});
 
-		if (response.status === 200) {
-			alpineData.success = true;
-		} else {
+			console.log(response);
+
+			if (response.status === 200) {
+				alpineData.success = true;
+			} else {
+				alpineData.error = true;
+			}
+		} catch {
 			alpineData.error = true;
 		}
+
+		alpineData.loading = false;
 	}
 
 	formEl?.addEventListener('submit', handleSubmit);
