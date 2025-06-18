@@ -1,0 +1,127 @@
+---
+import TextField from '../inputs/TextField.astro';
+import TextArea from '../inputs/TextArea.astro';
+import Button from '../inputs/Button.astro';
+---
+
+<div class="grid h-full grid-cols-1 md:grid-cols-2">
+	<div
+		class="flex h-full flex-col justify-center bg-ghall-green p-10 text-white"
+	>
+		<h2
+			class="my-7 text-center text-4xl font-thin motion-delay-100 intersect:motion-preset-fade intersect:motion-preset-slide-right"
+		>
+			Hello, world!
+		</h2>
+		<p
+			class="motion-delay-200 intersect:motion-preset-fade intersect:motion-preset-slide-right"
+		>
+			I'd love to hear from you! Whether you have a question, want to
+			collaborate on a project, or just want to say hello, don't hesitate to
+			reach out. You can contact me using the form <span class="max-md:hidden"
+				>on the right</span
+			><span class="md:hidden">below</span>, and I'll get back to you as soon as
+			possible.
+		</p>
+	</div>
+	<div
+		id="contact-container"
+		class="flex min-h-full flex-col items-center justify-center"
+		x-data="{ success: false, error: false }"
+	>
+		<div
+			x-show="success"
+			class="flex min-h-96 flex-col items-center justify-center gap-6 p-10 intersect:motion-preset-fade intersect:motion-scale-in-50"
+		>
+			<h2 class="text-center text-2xl font-thin">Success!</h2>
+			<p class="text-center">
+				Thanks for reaching out! Your message has been recieved.
+			</p>
+		</div>
+		<div
+			x-show="!success"
+			class="flex w-full flex-col items-center justify-center gap-6 p-10 intersect:motion-preset-fade"
+		>
+			<form
+				id="contact-form"
+				class="flex h-96 w-full flex-col gap-2 [&.*]:w-full"
+			>
+				<TextField
+					class="motion-delay-200 intersect:motion-preset-fade intersect:motion-preset-slide-up"
+					label="Name"
+					name="name"
+					required
+				/>
+				<TextField
+					class="motion-delay-300 intersect:motion-preset-fade intersect:motion-preset-slide-up"
+					label="Email"
+					name="email"
+					type="email"
+					required
+				/>
+				<TextArea
+					class="motion-delay-[400ms] intersect:motion-preset-fade intersect:motion-preset-slide-up"
+					label="Message"
+					name="message"
+					required
+				/>
+				<Button
+					class="motion-delay-500 intersect:motion-preset-fade intersect:motion-preset-slide-up"
+					type="submit">Send</Button
+				>
+				<span
+					class="text-center font-medium text-red-500"
+					x-show="error"
+					x-collapse>Oh no! There was an problem.</span
+				>
+			</form>
+		</div>
+	</div>
+</div>
+
+<script>
+	import Alpine from 'alpinejs';
+
+	const formEl = document.getElementById('contact-form') as HTMLFormElement;
+	const containerEl = document.getElementById(
+		'contact-container'
+	) as HTMLElement;
+
+	async function handleSubmit(event: Event) {
+		event.preventDefault();
+
+		const alpineData = Alpine.$data(containerEl) as {
+			success: boolean;
+			error: boolean;
+		};
+		console.log(alpineData);
+		const formData = new FormData(formEl);
+
+		const url = import.meta.env.PUBLIC_BACKEND_URL + '/contact';
+		console.log(url);
+
+		let body = { subject: 'Contact form submission' };
+
+		for (const [name, value] of formData) {
+			body = { ...body, [name]: value };
+		}
+
+		const response = await fetch(url, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(body),
+		});
+
+		console.log(response);
+
+		if (response.status === 200) {
+			alpineData.success = true;
+		} else {
+			alpineData.error = true;
+		}
+	}
+
+	formEl?.addEventListener('submit', handleSubmit);
+</script>

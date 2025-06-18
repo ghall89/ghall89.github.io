@@ -1,0 +1,25 @@
+---
+import clsx from 'clsx';
+
+interface Props {
+	label: string;
+	name: string;
+	type?: astroHTML.JSX.HTMLInputTypeAttribute;
+	required?: boolean;
+	class?: string;
+}
+
+const props = Astro.props;
+---
+
+<div class={props.class}>
+	<label class="block text-sm font-medium" for={props.name}>{props.label}</label
+	>
+	<input
+		name={props.name}
+		id={props.name}
+		class="w-full rounded-md border border-gray-200 bg-white p-1 transition-colors hover:bg-gray-50 focus:bg-white"
+		type={props.type ?? 'text'}
+		required={props.required ?? false}
+	/>
+</div>
