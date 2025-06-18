@@ -24,6 +24,8 @@ jobs:
         uses: withastro/action@v3
         with:
           package-manager: pnpm@latest
+        env:
+          PUBLIC_BACKEND_URL: ${{ secrets.PUBLIC_BACKEND_URL }}
 
   deploy:
     needs: build
