@@ -33,7 +33,7 @@ const navLinks: { label: string; key: string; icon: string }[] = [
 <nav class="absolute z-50 h-fit w-dvw top-0">
   <!-- Mobile Navbar -->
   <div class="overflow-hidden md:hidden z-100 m-3 flex items-center justify-between rounded-full border border-gray-200 bg-white/90 p-3 backdrop-blur-lg transition-all flex-shrink-0"
-  :class="{ 'w-56': mobileNavOpen, 'w-12': !mobileNavOpen }"
+  :class="{ 'w-72': mobileNavOpen, 'w-12': !mobileNavOpen }"
   x-init="$watch('activeTab', value => mobileNavOpen = false)"
   >
     <button x-on:click="mobileNavOpen = !mobileNavOpen" class="text-xl flex-shrink-0">
