@@ -1,9 +1,31 @@
 ---
 import clsx from 'clsx';
-const skills = {
-	Languages: ['JavaScript', 'TypeScript', 'Swift'],
-	'Front-End': ['NextJS', 'Astro', 'Tailwind', 'SwiftUI'],
-	'Back-End': ['PostgreSQL', 'SQLite', 'Prisma', 'Drizzle', 'Express'],
+import { Icon } from 'astro-icon/components';
+
+const skills: {
+	[key: string]: {
+		label: string;
+		icon: string;
+	}[];
+} = {
+	Languages: [
+		{ label: 'JavaScript', icon: 'javascript' },
+		{ label: 'TypeScript', icon: 'typescript' },
+		{ label: 'Swift', icon: 'swift' },
+	],
+	'Front-End': [
+		{ label: 'NextJS', icon: 'nextjs' },
+		{ label: 'Astro', icon: 'astrojs' },
+		{ label: 'CSS', icon: 'css' },
+		{ label: 'Tailwind', icon: 'tailwind' },
+	],
+	'Back-End': [
+		{ label: 'PostgreSQL', icon: 'postgresql' },
+		{ label: 'Prisma', icon: 'prisma' },
+		{ label: 'Drizzle', icon: 'drizzle' },
+		{ label: 'Node', icon: 'nodejs' },
+		{ label: 'Express', icon: 'express' },
+	],
 };
 
 const delay = [
@@ -23,14 +45,15 @@ const delay = [
 					<div class="mx-auto max-w-[300px] p-3">
 						<h2 class="mb-4 text-center text-xl font-light">{key}</h2>
 						<ul class="flex flex-wrap justify-center">
-							{skills[key].map((skill: string, i: number) => (
+							{skills[key].map((skill, i: number) => (
 								<li
 									class={clsx(
-										'm-2 w-fit rounded-full border border-gray-200 bg-white/90 px-4 py-1 text-slate-700 intersect:motion-preset-fade intersect:motion-scale-in-50 last:odd:md:col-span-2',
+										'm-2 flex w-fit items-center gap-2 rounded-full border border-gray-200 bg-white/90 px-4 py-1 text-slate-700 intersect:motion-preset-fade intersect:motion-scale-in-50 last:odd:md:col-span-2',
 										delay[i]
 									)}
 								>
-									{skill}
+									<Icon name={`skills/${skill.icon}`} />
+									{skill.label}
 								</li>
 							))}
 						</ul>
