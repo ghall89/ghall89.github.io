@@ -1,0 +1,84 @@
+---
+import { Icon } from 'astro-icon/components';
+
+import TextArea from '../inputs/TextArea.astro';
+import TextField from '../inputs/TextField.astro';
+---
+
+<div
+	id="contact-container"
+	class="flex min-h-full flex-col items-center justify-center"
+	x-data="{ success: false, error: false, loading: false }"
+>
+	<div
+		x-show="success"
+		class="flex min-h-96 flex-col items-center justify-center gap-6 p-10 intersect:motion-preset-fade intersect:motion-scale-in-50"
+	>
+		<h2 class="text-center text-2xl font-thin">Success!</h2>
+		<p class="text-center">
+			Thanks for reaching out! Your message has been recieved.
+		</p>
+	</div>
+	<div
+		x-show="!success"
+		class="flex w-full flex-col items-center justify-center gap-6 p-10 intersect:motion-preset-fade"
+	>
+		<form
+			id="contact-form"
+			class="flex h-96 w-full flex-col gap-2 [&.*]:w-full"
+		>
+			<TextField
+				class="motion-delay-200 intersect:motion-preset-fade intersect:motion-preset-slide-up"
+				label="Name"
+				name="name"
+				required
+			/>
+			<TextField
+				class="motion-delay-300 intersect:motion-preset-fade intersect:motion-preset-slide-up"
+				label="Email"
+				name="email"
+				type="email"
+				required
+			/>
+			<TextArea
+				class="motion-delay-[400ms] intersect:motion-preset-fade intersect:motion-preset-slide-up"
+				label="Message"
+				name="message"
+				required
+			/>
+			<button
+				class="rounded-md border bg-white p-1 transition-colors motion-delay-500 intersect:motion-preset-fade intersect:motion-preset-slide-up hover:bg-ghall-green hover:text-white disabled:bg-ghall-green disabled:text-white disabled:opacity-50"
+				type="submit"
+				x-bind:disabled="loading"
+			>
+				<Icon
+					name="spinner-solid"
+					class="motion-preset-spin mr-2 inline"
+					x-show="loading"
+				/>
+				<span x-text="!loading ? 'Send' : 'Sending...'"></span></button
+			>
+			<span
+				class="text-center font-medium text-red-500"
+				x-show="error"
+				x-collapse>Oh no! There was an problem.</span
+			>
+		</form>
+	</div>
+</div>
+
+<script>
+	import Alpine from 'alpinejs';
+	import { submitContactForm } from '../../utils/contactForm';
+
+	const formEl = document.getElementById('contact-form') as HTMLFormElement;
+	const containerEl = document.getElementById(
+		'contact-container'
+	) as HTMLElement;
+
+	formEl?.addEventListener('submit', (e) => {
+		e.preventDefault();
+		const alpineData = Alpine.$data(containerEl);
+		submitContactForm(formEl, alpineData);
+	});
+</script>

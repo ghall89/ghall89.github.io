@@ -1,6 +1,7 @@
 ---
 import clsx from 'clsx';
-import { Icon } from 'astro-icon/components';
+
+import Chip from '../elements/Chip.astro';
 
 const skills: {
 	[key: string]: {
@@ -8,16 +9,12 @@ const skills: {
 		icon: string;
 	}[];
 } = {
-	Languages: [
-		{ label: 'JavaScript', icon: 'javascript' },
-		{ label: 'TypeScript', icon: 'typescript' },
-		{ label: 'Swift', icon: 'swift' },
-	],
 	'Front-End': [
 		{ label: 'NextJS', icon: 'nextjs' },
+		{ label: 'React', icon: 'react' },
 		{ label: 'Astro', icon: 'astrojs' },
-		{ label: 'CSS', icon: 'css' },
-		{ label: 'Tailwind', icon: 'tailwind' },
+		{ label: 'Material UI', icon: 'material-ui' },
+		{ label: 'Tailwind CSS', icon: 'tailwind' },
 	],
 	'Back-End': [
 		{ label: 'PostgreSQL', icon: 'postgresql' },
@@ -25,6 +22,11 @@ const skills: {
 		{ label: 'Drizzle', icon: 'drizzle' },
 		{ label: 'Node', icon: 'nodejs' },
 		{ label: 'Express', icon: 'express' },
+	],
+	Languages: [
+		{ label: 'JavaScript', icon: 'javascript' },
+		{ label: 'TypeScript', icon: 'typescript' },
+		{ label: 'Swift', icon: 'swift' },
 	],
 };
 
@@ -44,19 +46,18 @@ const delay = [
 				<div class="col-span-1 m-5 intersect:motion-preset-fade intersect:motion-scale-in-50 last:odd:md:col-span-2">
 					<div class="mx-auto max-w-[300px] p-3">
 						<h2 class="mb-4 text-center text-xl font-light">{key}</h2>
-						<ul class="flex flex-wrap justify-center">
+						<div class="flex flex-wrap justify-center">
 							{skills[key].map((skill, i: number) => (
-								<li
+								<div
 									class={clsx(
-										'm-2 flex w-fit items-center gap-2 rounded-full border border-gray-200 bg-white/90 px-4 py-1 text-slate-700 intersect:motion-preset-fade intersect:motion-scale-in-50 last:odd:md:col-span-2',
+										'intersect:motion-preset-fade intersect:motion-scale-in-50 last:odd:md:col-span-2',
 										delay[i]
 									)}
 								>
-									<Icon name={`skills/${skill.icon}`} />
-									{skill.label}
-								</li>
+									<Chip icon={`skills/${skill.icon}`} label={skill.label} />
+								</div>
 							))}
-						</ul>
+						</div>
 					</div>
 				</div>
 			))
