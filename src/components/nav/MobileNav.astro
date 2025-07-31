@@ -12,7 +12,7 @@ const { navLinks } = Astro.props;
 
 <div
 	class="z-100 m-3 flex flex-shrink-0 items-center justify-between overflow-hidden rounded-full border border-gray-200 bg-white/90 p-3 backdrop-blur-lg transition-all md:hidden"
-	:class="{ 'w-72': mobileNavOpen, 'w-12': !mobileNavOpen }"
+	:class="{ 'w-80': mobileNavOpen, 'w-12': !mobileNavOpen }"
 	x-init="$watch('activeTab', value => mobileNavOpen = false)"
 >
 	<button
