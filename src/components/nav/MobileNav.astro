@@ -1,0 +1,51 @@
+---
+import { Icon } from 'astro-icon/components';
+
+import type { Section } from '../../data/sections';
+
+interface Props {
+	navLinks: Section[];
+}
+
+const { navLinks } = Astro.props;
+---
+
+<div
+	class="z-100 m-3 flex flex-shrink-0 items-center justify-between overflow-hidden rounded-full border border-gray-200 bg-white/90 p-3 backdrop-blur-lg transition-all md:hidden"
+	:class="{ 'w-80': mobileNavOpen, 'w-12': !mobileNavOpen }"
+	x-init="$watch('activeTab', value => mobileNavOpen = false)"
+>
+	<button
+		x-on:click="mobileNavOpen = !mobileNavOpen"
+		class="flex-shrink-0 text-xl"
+	>
+		<Icon
+			class="mx-1 transition-transform duration-300"
+			:class="mobileNavOpen === true && 'rotate-180'"
+			name="nav/chevron-right-solid"
+		/>
+	</button>
+	<div class="flex min-w-fit flex-shrink-0 items-center justify-around gap-8">
+		{
+			navLinks
+				.filter(({ key }) => key !== 'footer')
+				.map(({ key, icon }, i) => (
+					<button
+						id={`${key}-nav-item`}
+						x-on:click={`window.location.hash = '#${key}'`}
+						class="flex items-center gap-1 text-xl last:mr-5 hover:opacity-65"
+						x-show="mobileNavOpen"
+						x-transition:enter="transition ease-out duration-300"
+						x-transition:enter-start="opacity-0 translate-x-4"
+						x-transition:enter-end="opacity-100 translate-x-0"
+						x-transition:leave="transition ease-in duration-200"
+						x-transition:leave-start="opacity-100 translate-x-0"
+						x-transition:leave-end="opacity-0 -translate-x-4"
+						style={`transition-delay: ${i * 50}ms`}
+					>
+						<Icon name={icon} />
+					</button>
+				))
+		}
+	</div>
+</div>

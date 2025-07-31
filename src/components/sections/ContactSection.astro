@@ -1,26 +1,25 @@
 ---
+import SplitSection from '../layouts/SplitSection.astro';
 import ContactForm from '../forms/ContactForm.astro';
 ---
 
-<div class="grid h-full grid-cols-1 md:grid-cols-2">
-	<div
-		class="flex h-full flex-col justify-center bg-ghall-green p-5 text-white max-md:text-center md:p-10"
+<SplitSection>
+	<h2
+		slot="left-side"
+		class="my-2 text-center text-xl font-light motion-delay-100 intersect:motion-preset-fade intersect:motion-preset-slide-right md:my-7 md:text-4xl md:font-thin"
 	>
-		<h2
-			class="my-2 text-center text-xl font-light motion-delay-100 intersect:motion-preset-fade intersect:motion-preset-slide-right md:my-7 md:text-4xl md:font-thin"
-		>
-			Hello, world!
-		</h2>
-		<p
-			class="motion-delay-200 intersect:motion-preset-fade intersect:motion-preset-slide-right"
-		>
-			I'd love to hear from you! Whether you have a question, want to
-			collaborate on a project, or just want to say hello, don't hesitate to
-			reach out. You can contact me using the form <span class="max-md:hidden"
-				>on the right</span
-			><span class="md:hidden">below</span>, and I'll get back to you as soon as
-			possible.
-		</p>
-	</div>
-	<ContactForm />
-</div>
+		Hello, world!
+	</h2>
+	<p
+		slot="left-side"
+		class="motion-delay-200 intersect:motion-preset-fade intersect:motion-preset-slide-right"
+	>
+		I'd love to hear from you! Whether you have a question, want to collaborate
+		on a project, or just want to say hello, don't hesitate to reach out. You
+		can contact me using the form{' '}
+		<span class="max-md:hidden">on the right</span>
+		<span class="md:hidden">below</span>, and I'll get back to you as soon as
+		possible.
+	</p>
+	<ContactForm slot="right-side" />
+</SplitSection>

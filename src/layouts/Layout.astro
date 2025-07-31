@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css';
 
-import NavBar from '../components/NavBar.astro';
+import Nav from '../components/nav/Nav.astro';
 ---
 
 <!doctype html>
@@ -18,7 +18,7 @@ import NavBar from '../components/NavBar.astro';
 			class="h-dvh snap-y snap-mandatory overflow-y-scroll scroll-smooth text-slate-600"
 			x-data="{ activeTab: 'home', mobileNavOpen: false  }"
 		>
-			<NavBar />
+			<Nav />
 			<slot />
 		</main>
 	</body>

@@ -1,25 +1,11 @@
 ---
 import clsx from 'clsx';
 import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
 
-import type { SocialButtonProps } from '../../types';
-import SocialButton from '../SocialButton.astro';
+import SocialButton from '../ui/SocialButton.astro';
 import avatarImg from '../../assets/avatar.jpeg';
-
-const socials: SocialButtonProps[] = [
-	{
-		name: 'GitHub',
-		icon: 'social/github',
-		href: 'https://github.com/ghall89',
-		delay: 'motion-delay-500',
-	},
-	{
-		name: 'LinkedIn',
-		icon: 'social/linkedin',
-		href: 'https://www.linkedin.com/in/ghalldev/',
-		delay: 'motion-delay-700',
-	},
-];
+import { socials } from '../../data/socials';
 ---
 
 <>
@@ -56,4 +42,11 @@ const socials: SocialButtonProps[] = [
 			))
 		}
 	</div>
+	<a
+		href="#about"
+		class="absolute bottom-7 flex flex-col items-center text-lg motion-delay-700 intersect:motion-preset-slide-up"
+	>
+		<span>Scroll for more</span>
+		<Icon class="text-xl" name="chevron-down" />
+	</a>
 </>

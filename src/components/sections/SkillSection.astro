@@ -1,42 +1,9 @@
 ---
 import clsx from 'clsx';
 
-import Chip from '../elements/Chip.astro';
-
-const skills: {
-	[key: string]: {
-		label: string;
-		icon: string;
-	}[];
-} = {
-	'Front-End': [
-		{ label: 'NextJS', icon: 'nextjs' },
-		{ label: 'React', icon: 'react' },
-		{ label: 'Astro', icon: 'astrojs' },
-		{ label: 'Material UI', icon: 'material-ui' },
-		{ label: 'Tailwind CSS', icon: 'tailwind' },
-	],
-	'Back-End': [
-		{ label: 'PostgreSQL', icon: 'postgresql' },
-		{ label: 'Prisma', icon: 'prisma' },
-		{ label: 'Drizzle', icon: 'drizzle' },
-		{ label: 'Node', icon: 'nodejs' },
-		{ label: 'Express', icon: 'express' },
-	],
-	Languages: [
-		{ label: 'JavaScript', icon: 'javascript' },
-		{ label: 'TypeScript', icon: 'typescript' },
-		{ label: 'Swift', icon: 'swift' },
-	],
-};
-
-const delay = [
-	'motion-delay-200',
-	'motion-delay-300',
-	'motion-delay-[400ms]',
-	'motion-delay-[500ms]',
-	'motion-delay-[600ms]',
-];
+import Chip from '../ui/Chip.astro';
+import { getDelay } from '../../utils/getDelay';
+import { skills } from '../../data/skills';
 ---
 
 <div>
@@ -45,13 +12,21 @@ const delay = [
 			Object.keys(skills).map((key) => (
 				<div class="col-span-1 m-5 intersect:motion-preset-fade intersect:motion-scale-in-50 last:odd:md:col-span-2">
 					<div class="mx-auto max-w-[300px] p-3">
-						<h2 class="mb-4 text-center text-xl font-light">{key}</h2>
-						<div class="flex flex-wrap justify-center">
+						<h2
+							id={`${key.toLowerCase()}-label`}
+							class="mb-4 text-center text-xl font-light"
+						>
+							{key}
+						</h2>
+						<div
+							aria-labelledby={`${key.toLowerCase()}-label`}
+							class="flex flex-wrap justify-center"
+						>
 							{skills[key].map((skill, i: number) => (
 								<div
 									class={clsx(
 										'intersect:motion-preset-fade intersect:motion-scale-in-50 last:odd:md:col-span-2',
-										delay[i]
+										getDelay(i)
 									)}
 								>
 									<Chip icon={`skills/${skill.icon}`} label={skill.label} />
