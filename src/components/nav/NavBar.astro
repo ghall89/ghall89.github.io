@@ -1,0 +1,38 @@
+---
+import { Icon } from 'astro-icon/components'
+
+import type { Section } from "../../data/sections";
+
+
+interface Props {
+  navLinks: Section[]
+}
+
+const {navLinks} = Astro.props;
+
+---
+
+ <div
+    class="z-100 m-3 justify-center gap-8 rounded-full border border-gray-200 bg-white/90 p-3 backdrop-blur-lg w-fit mx-auto max-md:hidden"
+  >
+    <ul
+      class="mx-6 flex items-center gap-4"
+    >
+      {
+        navLinks.map(({ key, icon }) => (
+          <li>
+            <button
+              id={`${key}-nav-item`}
+              x-on:click={`window.location.hash = '#${key}'`}
+              class="flex items-center gap-1 max-md:text-2xl hover:opacity-65 transition-colors"
+              :class={`activeTab === '${key}' && 'text-ghall-green'`}
+            >
+              <Icon name={icon} />
+              <span class="font-semibold">{key[0].toUpperCase() + key.slice(1)}</span>
+            </button>
+          </li>
+        ))
+      }
+      <li x-show="activeTab === 'footer'" class="motion-scale-in-0"><Icon name="heart-solid" class="text-red-500" /></li>
+    </ul>
+  </div>
