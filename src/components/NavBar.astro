@@ -1,33 +1,10 @@
 ---
 import { Icon } from "astro-icon/components";
+import { sections } from "../data/sections";
 
-const navLinks: { label: string; key: string; icon: string }[] = [
-  {
-    label: "Home",
-    key: "home",
-    icon: "nav/house-solid",
-  },
-  {
-    label: "About",
-    key: "about",
-    icon: "nav/circle-info-solid",
-  },
-  {
-    label: "Skills",
-    key: "skill",
-    icon: "nav/wrench-solid",
-  },
-  // {
-  //   label: "Work",
-  //   key: "work",
-  //   icon: "nav/briefcase-solid",
-  // },
-  {
-    label: "Contact",
-    key: "contact",
-    icon: "nav/envelope-solid",
-  },
-];
+
+const navLinks = sections.filter(({key}) => key !== 'footer')
+
 ---
 
 <nav class="absolute z-50 h-fit w-dvw top-0">
@@ -41,7 +18,7 @@ const navLinks: { label: string; key: string; icon: string }[] = [
     </button>
     <div class="flex items-center justify-around min-w-fit gap-8 flex-shrink-0">
     {
-      navLinks.map(({ key, icon }, i) => (
+      sections.filter(({key}) => key !== 'footer').map(({ key, icon }, i) => (
           <button
             id={`${key}-nav-item`}
             x-on:click={`window.location.hash = '#${key}'`}
@@ -70,7 +47,7 @@ const navLinks: { label: string; key: string; icon: string }[] = [
       class="mx-6 flex items-center gap-4"
     >
       {
-        navLinks.map(({ label, key, icon }) => (
+        navLinks.map(({ key, icon }) => (
           <li>
             <button
               id={`${key}-nav-item`}
@@ -79,7 +56,7 @@ const navLinks: { label: string; key: string; icon: string }[] = [
               :class={`activeTab === '${key}' && 'text-ghall-green'`}
             >
               <Icon name={icon} />
-              <span class="font-semibold">{label}</span>
+              <span class="font-semibold">{key[0].toUpperCase() + key.slice(1)}</span>
             </button>
           </li>
         ))

@@ -2,46 +2,7 @@
 import clsx from 'clsx';
 
 import Layout from '../layouts/Layout.astro';
-
-import HomeSection from '../components/sections/HomeSection.astro';
-import AboutSection from '../components/sections/AboutSection.astro';
-import SkillSection from '../components/sections/SkillSection.astro';
-import ProjectsSection from '../components/sections/ProjectsSection.astro';
-import ContactSection from '../components/sections/ContactSection.astro';
-import FooterSection from '../components/sections/FooterSection.astro';
-
-const sections = [
-	{
-		Component: HomeSection,
-		key: 'home',
-		greenBackdrop: false,
-	},
-	{
-		Component: AboutSection,
-		key: 'about',
-		greenBackdrop: true,
-	},
-	{
-		Component: SkillSection,
-		key: 'skill',
-		greenBackdrop: false,
-	},
-	// {
-	//   Component: WorkSection,
-	//   key: "work",
-	//   greenBackdrop: false,
-	// },
-	{
-		Component: ContactSection,
-		key: 'contact',
-		greenBackdrop: false,
-	},
-	{
-		Component: FooterSection,
-		key: 'footer',
-		greenBackdrop: false,
-	},
-];
+import { sections } from '../data/sections';
 ---
 
 <Layout>

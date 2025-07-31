@@ -1,20 +1,18 @@
 ---
-const projects: {
-	name: string;
-	github: string;
-	summary: string;
-}[] = [
-	{
-		name: 'bgg-client',
-		github: 'https://github.com/ghall89/bgg-client',
-		summary:
-			'A Node.js package to call the BoardGameGeek.com API and convert the response from XML to JSON.',
-	},
-	{
-		name: 'AutoDock',
-		github: 'https://github.com/ghall89/autodock',
-		summary:
-			'A utility for automatically hiding and showing the MacOS Dock based on connected display size. ',
-	},
-];
+import { projects } from '../../data/projects';
 ---
+
+<div>
+	{
+		projects.map((project) => (
+			<div class="m-4 rounded-md border border-gray-200 p-3">
+				<div class="flex justify-between">
+					<h3 class="text-xl font-bold">{project.name}</h3>
+					<a href={project.github}>See Code on GitHub</a>
+				</div>
+				<p>{project.summary}</p>
+				<p class="text-slate-500">Skills: {project.skills.join(', ')}</p>
+			</div>
+		))
+	}
+</div>
