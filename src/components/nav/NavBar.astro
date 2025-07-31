@@ -11,8 +11,8 @@ const { navLinks } = Astro.props;
 ---
 
 <div
-	class="z-100 m-3 mx-auto w-fit justify-center gap-8 rounded-full border border-gray-200 bg-white/90 p-3 backdrop-blur-lg transition-transform duration-300 max-md:hidden"
-	x-bind:class="activeTab === 'home' && '-translate-y-16'"
+	class="z-100 m-3 mx-auto w-fit -translate-y-16 justify-center gap-8 rounded-full border border-gray-200 bg-white/90 p-3 backdrop-blur-lg transition-transform duration-300 max-md:hidden"
+	x-bind:class="activeTab !== 'home' && 'translate-y-0'"
 >
 	<ul class="mx-6 flex items-center gap-4">
 		{

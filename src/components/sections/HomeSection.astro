@@ -1,6 +1,7 @@
 ---
 import clsx from 'clsx';
 import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
 
 import SocialButton from '../ui/SocialButton.astro';
 import avatarImg from '../../assets/avatar.jpeg';
@@ -41,4 +42,11 @@ import { socials } from '../../data/socials';
 			))
 		}
 	</div>
+	<a
+		href="#about"
+		class="absolute bottom-7 flex flex-col items-center text-lg motion-delay-700 intersect:motion-preset-slide-up"
+	>
+		<span>Scroll for more</span>
+		<Icon class="text-xl" name="chevron-down" />
+	</a>
 </>
