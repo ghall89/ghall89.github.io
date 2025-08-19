@@ -44,9 +44,15 @@ import { socials } from '../../data/socials';
 	</div>
 	<a
 		href="#about"
-		class="absolute bottom-7 flex flex-col items-center text-lg motion-delay-700 intersect:motion-preset-slide-up"
+		class="group absolute bottom-7 flex flex-col items-center text-lg transition-transform duration-500 motion-delay-700 intersect:motion-preset-slide-up hover:-translate-y-2"
 	>
-		<span>Scroll for more</span>
-		<Icon class="text-xl" name="chevron-down" />
+		<span
+			class="text-slate-500 transition-colors duration-500 group-hover:text-slate-800"
+			>Scroll for more</span
+		>
+		<Icon
+			class="text-xl transition-transform delay-100 duration-700 group-hover:scale-110"
+			name="chevron-down"
+		/>
 	</a>
 </>
