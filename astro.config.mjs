@@ -7,8 +7,10 @@ import icon from 'astro-icon';
 
 import alpinejs from '@astrojs/alpinejs';
 
+import solidJs from '@astrojs/solid-js';
+
 // https://astro.build/config
 export default defineConfig({
-	output: 'static',
-	integrations: [icon(), tailwind(), alpinejs({ entrypoint: './entrypoint' })],
+    output: 'static',
+    integrations: [icon(), tailwind(), alpinejs({ entrypoint: './entrypoint' }), solidJs()],
 });
