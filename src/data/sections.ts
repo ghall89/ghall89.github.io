@@ -37,12 +37,12 @@ export const sections: Section[] = [
 		icon: 'nav/briefcase-solid',
 		greenBackdrop: false,
 	},
-	{
-		Component: ContactSection,
-		key: 'contact',
-		icon: 'nav/envelope-solid',
-		greenBackdrop: false,
-	},
+	// {
+	// 	Component: ContactSection,
+	// 	key: 'contact',
+	// 	icon: 'nav/envelope-solid',
+	// 	greenBackdrop: false,
+	// },
 	{
 		Component: FooterSection,
 		key: 'footer',
