@@ -1,17 +1,35 @@
+import type { SetStoreFunction } from 'solid-js/store';
+
+export interface StoreType {
+	success: boolean;
+	error?: string;
+	loading: boolean;
+	fields: {
+		name: string;
+		email: string;
+		message: string;
+		diceTotal: string;
+	};
+	captcha: {
+		dieOne: number;
+		dieTwo: number;
+	};
+}
+
 export async function submitContactForm(
-	formEl: HTMLFormElement,
-	alpineData: any
+	store: StoreType,
+	setStore: SetStoreFunction<StoreType>
 ) {
-	const formData = new FormData(formEl);
+	const formData = store.fields;
 	const url = import.meta.env.PUBLIC_BACKEND_URL + '/contact';
 
-	let body = { subject: 'Contact form submission' };
-	for (const [name, value] of formData) {
-		body = { ...body, [name]: value };
-	}
+	let body = { subject: 'Contact form submission', ...formData };
 
-	alpineData.loading = true;
-	alpineData.error = false;
+	setStore((prev) => ({
+		...prev,
+		loading: true,
+		error: undefined,
+	}));
 
 	try {
 		const response = await fetch(url, {
@@ -19,11 +37,21 @@ export async function submitContactForm(
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(body),
 		});
-		alpineData.success = response.status === 200;
-		alpineData.error = response.status !== 200;
+
+		setStore((prev) => ({
+			...prev,
+			success: response.status === 200,
+			error: response.status !== 200 ? 'There was a problem...' : undefined,
+		}));
 	} catch {
-		alpineData.error = true;
+		setStore((prev) => ({
+			...prev,
+			error: 'There was a problem...',
+		}));
 	} finally {
-		alpineData.loading = false;
+		setStore((prev) => ({
+			...prev,
+			loading: false,
+		}));
 	}
 }
