@@ -11,11 +11,9 @@ export default function TextField(props: TextFieldProps) {
 				{props.label}
 			</label>
 			<input
-				name={props.name}
-				id={props.name}
+				type="text"
+				{...props}
 				class="w-full rounded-md border border-gray-200 bg-white p-1 transition-colors duration-300 hover:bg-gray-50 focus:bg-white"
-				type={props.type ?? 'text'}
-				required={props.required ?? false}
 			/>
 		</div>
 	);

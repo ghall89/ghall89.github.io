@@ -1,6 +1,7 @@
 import type { JSX } from 'solid-js';
+import clsx from 'clsx';
 
-interface TextAreaProps extends JSX.InputHTMLAttributes<HTMLInputElement> {
+interface TextAreaProps extends JSX.InputHTMLAttributes<HTMLTextAreaElement> {
 	label: string;
 }
 
@@ -11,11 +12,9 @@ export default function TextArea(props: TextAreaProps) {
 				{props.label}
 			</label>
 			<textarea
-				name={props.name}
-				id={props.name}
+				rows={'5'}
+				{...props}
 				class="w-full rounded-md border border-gray-200 bg-white p-1 ring-ghall-green transition-colors duration-300 hover:bg-gray-50 focus:bg-white"
-				required={props.required ?? false}
-				rows="5"
 			></textarea>
 		</div>
 	);

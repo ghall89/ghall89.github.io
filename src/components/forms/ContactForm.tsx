@@ -1,8 +1,7 @@
 import { createStore } from 'solid-js/store';
-import { Switch, Match, Show } from 'solid-js';
-import type { JSX } from 'solid-js';
+import { Switch, Match, Show, For } from 'solid-js';
 
-import { submitContactForm } from '../../utils/contactForm';
+import { submitContactForm, type StoreType } from '../../utils/contactForm';
 
 import TextArea from '../inputs/TextArea';
 import TextField from '../inputs/TextField';
@@ -14,9 +13,9 @@ export default function ContactForm() {
 	const dieOne = Math.floor(Math.random() * (max - min + 1) + min);
 	const dieTwo = Math.floor(Math.random() * (max - min + 1) + min);
 
-	const [formStore, setFormStore] = createStore({
+	const [formStore, setFormStore] = createStore<StoreType>({
 		success: false,
-		error: false,
+		error: undefined,
 		loading: false,
 		fields: {
 			name: '',
@@ -27,7 +26,6 @@ export default function ContactForm() {
 		captcha: {
 			dieOne,
 			dieTwo,
-			total: dieOne + dieTwo,
 		},
 	});
 
@@ -43,15 +41,18 @@ export default function ContactForm() {
 		}));
 	};
 
-	const handleSubmit = (event: SubmitEvent) => {
+	const handleSubmit = async (event: SubmitEvent) => {
 		event.preventDefault();
 
-		console.log(formStore);
+		const { dieOne, dieTwo } = formStore.captcha;
 
-		if (formStore.captcha.total.toString() === formStore.fields.diceTotal) {
-			console.log('Correct');
+		if (dieOne + dieTwo === Number(formStore.fields.diceTotal)) {
+			await submitContactForm(formStore, setFormStore);
 		} else {
-			console.log('Wrong!');
+			setFormStore((prev) => ({
+				...prev,
+				error: 'Dice total is incorrect.',
+			}));
 		}
 	};
 
@@ -74,27 +75,14 @@ export default function ContactForm() {
 						<form
 							id="contact-form"
 							class="flex h-96 w-full flex-col gap-2 [&.*]:w-full"
-							on:submit={(event) => {
-								event.preventDefault();
-
-								console.log(formStore);
-
-								if (
-									formStore.captcha.total.toString() ===
-									formStore.fields.diceTotal
-								) {
-									console.log('Correct');
-								} else {
-									console.log('Wrong!');
-								}
-							}}
+							onSubmit={handleSubmit}
 						>
 							<TextField
 								class="motion-delay-200 intersect:motion-preset-fade intersect:motion-preset-slide-up"
 								label="Name"
 								name="name"
 								required
-								onChange={handleChange}
+								onInput={handleChange}
 							/>
 							<TextField
 								class="motion-delay-300 intersect:motion-preset-fade intersect:motion-preset-slide-up"
@@ -102,27 +90,36 @@ export default function ContactForm() {
 								name="email"
 								type="email"
 								required
+								onInput={handleChange}
 							/>
 							<TextArea
 								class="motion-delay-[400ms] intersect:motion-preset-fade intersect:motion-preset-slide-up"
 								label="Message"
 								name="message"
 								required
+								onInput={handleChange}
 							/>
 							<div class="motion-delay-500 intersect:motion-preset-fade intersect:motion-preset-slide-up">
-								<span>
-									{formStore.captcha.dieOne} + {formStore.captcha.dieTwo}
-								</span>
-								<div class="flex gap-2"></div>
+								<div class="flex gap-2">
+									<For each={Object.values(formStore.captcha)}>
+										{(value) => (
+											<img
+												src={`/dice/dice-${value}.svg`}
+												alt={value.toString()}
+												class="size-10"
+											/>
+										)}
+									</For>
+								</div>
 								<TextField
 									label="What is the total shown on the dice?"
-									name="dice-total"
+									name="diceTotal"
 									required
+									onInput={handleChange}
 								/>
 							</div>
 							<button
 								class="rounded-md border bg-white p-1 transition-colors duration-300 motion-delay-[600ms] intersect:motion-preset-fade intersect:motion-preset-slide-up hover:bg-ghall-green hover:text-white active:bg-ghall-green/90 disabled:bg-ghall-green disabled:text-white disabled:opacity-50"
-								type="submit"
 								disabled={formStore.loading}
 							>
 								{/*<Icon
@@ -134,7 +131,7 @@ export default function ContactForm() {
 							</button>
 							<Show when={formStore.error}>
 								<span class="text-center font-medium text-red-500">
-									Oh no! There was an problem.
+									{formStore.error}
 								</span>
 							</Show>
 						</form>
