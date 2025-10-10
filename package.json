@@ -1,36 +1,36 @@
 {
-  "name": "ghall-dev",
-  "type": "module",
-  "version": "0.0.1",
-  "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
-  "dependencies": {
-    "@alpinejs/collapse": "^3.14.9",
-    "@alpinejs/intersect": "^3.14.9",
-    "@astrojs/alpinejs": "^0.4.8",
-    "@astrojs/solid-js": "^5.1.1",
-    "@astrojs/tailwind": "^6.0.2",
-    "@types/alpinejs": "^3.13.11",
-    "alpinejs": "^3.14.9",
-    "astro": "^5.9.3",
-    "astro-icon": "^1.1.5",
-    "clsx": "^2.1.1",
-    "sharp": "^0.34.2",
-    "solid-js": "^1.9.9",
-    "tailwindcss": "^3.4.17"
-  },
-  "devDependencies": {
-    "@types/alpinejs__collapse": "^3.13.4",
-    "@types/alpinejs__intersect": "^3.13.4",
-    "prettier": "^3.5.3",
-    "prettier-plugin-astro": "^0.14.1",
-    "prettier-plugin-tailwindcss": "^0.6.12",
-    "tailwindcss-intersect": "^2.2.0",
-    "tailwindcss-motion": "^1.1.1",
-    "vite": "^6.3.5"
-  }
+	"name": "ghall-dev",
+	"type": "module",
+	"version": "0.0.1",
+	"scripts": {
+		"dev": "astro dev",
+		"build": "astro build",
+		"preview": "astro preview",
+		"astro": "astro"
+	},
+	"dependencies": {
+		"@alpinejs/collapse": "^3.14.9",
+		"@alpinejs/intersect": "^3.14.9",
+		"@astrojs/alpinejs": "^0.4.8",
+		"@astrojs/solid-js": "^5.1.1",
+		"@tailwindcss/vite": "^4.1.14",
+		"@types/alpinejs": "^3.13.11",
+		"alpinejs": "^3.14.9",
+		"astro": "^5.9.3",
+		"astro-icon": "^1.1.5",
+		"clsx": "^2.1.1",
+		"sharp": "^0.34.2",
+		"solid-js": "^1.9.9",
+		"tailwindcss": "^4.1.14"
+	},
+	"devDependencies": {
+		"@types/alpinejs__collapse": "^3.13.4",
+		"@types/alpinejs__intersect": "^3.13.4",
+		"prettier": "^3.5.3",
+		"prettier-plugin-astro": "^0.14.1",
+		"prettier-plugin-tailwindcss": "^0.6.12",
+		"tailwindcss-intersect": "^2.2.0",
+		"tailwindcss-motion": "^1.1.1",
+		"vite": "^6.3.5"
+	}
 }

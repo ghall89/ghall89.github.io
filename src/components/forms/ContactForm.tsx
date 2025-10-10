@@ -63,7 +63,7 @@ export default function ContactForm() {
 		>
 			<Switch>
 				<Match when={formStore.success}>
-					<div class="flex min-h-96 flex-col items-center justify-center gap-6 p-10 intersect:motion-preset-fade intersect:motion-scale-in-50">
+					<div class="intersect:motion-preset-fade intersect:motion-scale-in-50 flex min-h-96 flex-col items-center justify-center gap-6 p-10">
 						<h2 class="text-center text-2xl font-thin">Success!</h2>
 						<p class="text-center">
 							Thanks for reaching out! Your message has been recieved.
@@ -71,7 +71,7 @@ export default function ContactForm() {
 					</div>
 				</Match>
 				<Match when={!formStore.success}>
-					<div class="flex w-full flex-col items-center justify-center gap-6 p-10 intersect:motion-preset-fade">
+					<div class="intersect:motion-preset-fade flex w-full flex-col items-center justify-center gap-6 p-10">
 						<form
 							id="contact-form"
 							class="flex h-96 w-full flex-col gap-2 [&.*]:w-full"
@@ -119,7 +119,7 @@ export default function ContactForm() {
 								/>
 							</div>
 							<button
-								class="rounded-md border bg-white p-1 transition-colors duration-300 motion-delay-[600ms] intersect:motion-preset-fade intersect:motion-preset-slide-up hover:bg-ghall-green hover:text-white active:bg-ghall-green/90 disabled:bg-ghall-green disabled:text-white disabled:opacity-50"
+								class="btn motion-delay-[600ms] intersect:motion-preset-fade intersect:motion-preset-slide-up"
 								disabled={formStore.loading}
 							>
 								{/*<Icon
