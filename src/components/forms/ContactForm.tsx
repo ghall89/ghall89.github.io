@@ -45,8 +45,9 @@ export default function ContactForm() {
 		event.preventDefault();
 
 		const { dieOne, dieTwo } = formStore.captcha;
+		const diceTotal = (dieOne + dieTwo).toString();
 
-		if (dieOne + dieTwo === Number(formStore.fields.diceTotal)) {
+		if (diceTotal === formStore.fields.diceTotal) {
 			await submitContactForm(formStore, setFormStore);
 		} else {
 			setFormStore((prev) => ({
