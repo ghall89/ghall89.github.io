@@ -1,5 +1,5 @@
 import { createStore } from 'solid-js/store';
-import { Switch, Match, Show, For } from 'solid-js';
+import { Switch, Match, Show, For, onMount } from 'solid-js';
 
 import { submitContactForm, type StoreType } from '../../utils/contactForm';
 
@@ -7,12 +7,6 @@ import TextArea from '../inputs/TextArea';
 import TextField from '../inputs/TextField';
 
 export default function ContactForm() {
-	const min = 1;
-	const max = 6;
-
-	const dieOne = Math.floor(Math.random() * (max - min + 1) + min);
-	const dieTwo = Math.floor(Math.random() * (max - min + 1) + min);
-
 	const [formStore, setFormStore] = createStore<StoreType>({
 		success: false,
 		error: undefined,
@@ -24,9 +18,20 @@ export default function ContactForm() {
 			diceTotal: '',
 		},
 		captcha: {
-			dieOne,
-			dieTwo,
+			dieOne: 0,
+			dieTwo: 0,
 		},
+	});
+
+	onMount(() => {
+		const min = 1;
+		const max = 6;
+		const d1 = Math.floor(Math.random() * (max - min + 1) + min);
+		const d2 = Math.floor(Math.random() * (max - min + 1) + min);
+		setFormStore((prev) => ({
+			...prev,
+			captcha: { dieOne: d1, dieTwo: d2 },
+		}));
 	});
 
 	const handleChange = (event: Event) => {

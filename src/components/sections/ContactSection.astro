@@ -6,7 +6,7 @@ import ContactForm from '../forms/ContactForm.tsx';
 <SplitSection>
 	<h2
 		slot="left-side"
-		class="my-2 text-center text-xl font-light motion-delay-100 intersect:motion-preset-fade intersect:motion-preset-slide-right md:my-7 md:text-4xl md:font-thin"
+		class="motion-delay-100 intersect:motion-preset-fade intersect:motion-preset-slide-right my-2 text-center text-xl font-light md:my-7 md:text-4xl md:font-thin"
 	>
 		Hello, world!
 	</h2>
@@ -21,5 +21,5 @@ import ContactForm from '../forms/ContactForm.tsx';
 		<span class="md:hidden">below</span>, and I'll get back to you as soon as
 		possible.
 	</p>
-	<ContactForm slot="right-side" client:load />
+	<ContactForm slot="right-side" client:visible />
 </SplitSection>
