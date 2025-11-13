@@ -1,36 +1,32 @@
 {
-	"name": "ghall-dev",
-	"type": "module",
+	"name": "ghall.dev",
 	"version": "0.0.1",
-	"scripts": {
-		"dev": "astro dev",
-		"build": "astro build",
-		"preview": "astro preview",
-		"astro": "astro"
-	},
-	"dependencies": {
-		"@alpinejs/collapse": "^3.14.9",
-		"@alpinejs/intersect": "^3.14.9",
-		"@astrojs/alpinejs": "^0.4.8",
-		"@astrojs/solid-js": "^5.1.1",
-		"@tailwindcss/vite": "^4.1.14",
-		"@types/alpinejs": "^3.13.11",
-		"alpinejs": "^3.14.9",
-		"astro": "^5.9.3",
-		"astro-icon": "^1.1.5",
-		"clsx": "^2.1.1",
-		"sharp": "^0.34.2",
-		"solid-js": "^1.9.9",
-		"tailwindcss": "^4.1.14"
-	},
 	"devDependencies": {
-		"@types/alpinejs__collapse": "^3.13.4",
-		"@types/alpinejs__intersect": "^3.13.4",
-		"prettier": "^3.5.3",
-		"prettier-plugin-astro": "^0.14.1",
-		"prettier-plugin-tailwindcss": "^0.6.12",
+		"@eslint/compat": "^1.4.0",
+		"@eslint/js": "^9.38.0",
+		"@sveltejs/adapter-auto": "^7.0.0",
+		"@sveltejs/kit": "^2.47.1",
+		"@sveltejs/vite-plugin-svelte": "^6.2.1",
+		"@tailwindcss/vite": "^4.1.14",
+		"prettier": "^3.6.2",
+		"prettier-plugin-svelte": "^3.4.0",
+		"prettier-plugin-tailwindcss": "^0.7.1",
+		"svelte": "^5.41.0",
+		"tailwindcss": "^4.1.14",
 		"tailwindcss-intersect": "^2.2.0",
 		"tailwindcss-motion": "^1.1.1",
-		"vite": "^6.3.5"
+		"typescript": "^5.9.3",
+		"vite": "^7.1.10"
+	},
+	"private": true,
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"prepare": "svelte-kit sync || echo ''"
+	},
+	"type": "module",
+	"dependencies": {
+		"@iconify/svelte": "4"
 	}
 }
